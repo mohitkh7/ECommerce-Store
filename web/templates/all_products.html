@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+	{% block main_content %}
+      <!-- Example row of columns -->
+      <div class="row-fluid">
+        <ul class="thumbnails">
+        {% for product in all_products %}
+          <li class="span3">
+            <div class="thumbnail">
+              <img alt="230x200" src="{{ product.image.url }}">
+              <div class="caption">
+                <h3>{{ product.name }}</h3>
+                <p>{{ product.description | truncatewords:20 }}</p>
+                <p>Price : <b>₹{{ product.price }}</b></p>
+                <p><a href="checkout.html" class="btn btn-primary">Add To Cart</a> <a href="{% url 'product' product.slug %}" class="btn">View</a></p>
+              </div>
+            </div>
+          </li>
+        {% endfor %}
+        </ul>
+      </div>
+
+      <hr>
+
+      <div class="footer">
+        <p>&copy; Company 2014</p>
+      </div>
+
+    </div> <!-- /container -->
+    {% endblock %}
+  </body>
+</html>

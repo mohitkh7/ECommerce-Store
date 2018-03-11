@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+	{% block main_content %}
+	<center><h3>{{ category }}</h3></center>
+	<p><b>Products :</b></p>
+      <!-- Example row of columns -->
+      <div class="row-fluid">
+        <ul class="thumbnails">
+        {% for product in category.product_set.all %}
+          <li class="span3">
+            <div class="thumbnail">
+              <img alt="230x200" src="{{ product.image.url }}">
+              <div class="caption">
+                <h3>{{ product.name }}</h3>
+                <p>{{ product.description | truncatewords:20 }}</p>
+                <p>Price : <b>₹{{ product.price }}</b></p>
+                <p><a href="checkout.html" class="btn btn-primary">Add To Cart</a> <a href="{% url 'product' product.slug %}" class="btn">View</a></p>
+              </div>
+            </div>
+          </li>
+        {% empty %}
+        	No Product found.
+        {% endfor %}
+        </ul>
+      </div>
+
+      <hr>
+
+      <div class="footer">
+        <p>&copy; Company 2014</p>
+      </div>
+
+    </div> <!-- /container -->
+    {% endblock %}
+  </body>
+</html>
